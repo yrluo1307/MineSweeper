@@ -18,7 +18,6 @@ class MineSweeper {
 		grids = new int[h][w];
 		states = new boolean[h][w];
 		
-		
 		// Set mines randomly:
 		mines = r.ints(0, h * w).distinct().limit(m).sorted().toArray();
 		for (int loc : mines) {
