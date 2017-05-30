@@ -4,7 +4,7 @@ class MineSweeper {
 	int h, w;
 	int unexplored;
 	int[][] grids;
-	int[][] states;  // 0: unclicked; 1: clicked
+	boolean[][] states;  // 0: unclicked; 1: clicked
 	int[] mines;
 	Random r;
 
@@ -16,7 +16,7 @@ class MineSweeper {
 		unexplored = h * w - m;
 		r = new Random();
 		grids = new int[h][w];
-		states = new int[h][w];
+		states = new boolean[h][w];
 		
 		
 		// Set mines randomly:
