@@ -4,7 +4,7 @@ class MineSweeper {
 	int h, w;
 	int unexplored;
 	int[][] grids;
-	boolean[][] states;  // 0: unclicked; 1: clicked
+	boolean[][] states;  // false: unclicked; true: clicked
 	int[] mines;
 	Random r;
 
