@@ -11,10 +11,10 @@ public class MineSweeperFrame {
 	public static final int NUM_OF_ROWS = 16;
 	public static final int NUM_OF_COLS = 16;
 	public static final int NUM_OF_MINES = 40;
-	public static final int SIZE_OF_GRID = 16; // px
+	public static final int SIZE_OF_GRID = 16; // 16px per grid
 	
 	public static void main(String[] args) throws IOException {
-		MineSweeperFrame fd = new MineSweeperFrame();
+		MineSweeperFrame f = new MineSweeperFrame();
 	}
 	
 	MineSweeper ms;
@@ -22,7 +22,7 @@ public class MineSweeperFrame {
 	JFrame f;
 	JButton[][] buttons;
 	int unexplored;
-	long time1;
+	long time1;  // start time
 	ImageIcon[] icons;
 	
 	public MineSweeperFrame() throws IOException {
@@ -31,6 +31,8 @@ public class MineSweeperFrame {
 		ms = new MineSweeper(NUM_OF_ROWS, NUM_OF_COLS, NUM_OF_MINES);
 		started = false;
 		buttons = new JButton[NUM_OF_ROWS][NUM_OF_COLS];
+		
+		// Initialize icons:
 		icons = new ImageIcon[11];
 		for (int i = 0; i < 10; i++) {
 			Image img = ImageIO.read(new File("2000px-Minesweeper_" + i + ".svg.png"));
@@ -57,21 +59,21 @@ public class MineSweeperFrame {
 	}
 	
 	class ButtonHandler implements ActionListener {
-	    private int row, col;
-	    private MineSweeper game;
+		private int row, col;
+	    	private MineSweeper game;
 
-	    public ButtonHandler(int r, int c, MineSweeper g) {
-	        row = r;
-	        col = c;
-	        game = g;
-	    }
+	    	public ButtonHandler(int r, int c, MineSweeper g) {
+	        	row = r;
+	        	col = c;
+	        	game = g;
+	    	}
 
-	    public void actionPerformed(ActionEvent event) {
-	    	JButton b = (JButton) event.getSource();
+	    	public void actionPerformed(ActionEvent event) {
+	    		JButton b = (JButton) event.getSource();
 			int row = b.getY() / SIZE_OF_GRID;
 			int col = b.getX() / SIZE_OF_GRID;
 			click(row, col);
-	    }
+	    	}
 	    
 		private void click(int row, int col) {
 			if (!started) {
@@ -117,6 +119,3 @@ public class MineSweeperFrame {
 		}
 	}
 }
-
-
-
