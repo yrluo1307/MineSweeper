@@ -1,3 +1,5 @@
+// The implementation of Mine Sweeper GUI
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -25,6 +27,7 @@ public class MineSweeperFrame {
 	long time1;  // start time
 	ImageIcon[] icons;
 	
+	// Create a new game:
 	public MineSweeperFrame() throws IOException {
 		f = new JFrame("MineSweeper");
 		f.setSize(NUM_OF_COLS * SIZE_OF_GRID, NUM_OF_ROWS * SIZE_OF_GRID);
@@ -42,6 +45,8 @@ public class MineSweeperFrame {
 		}
 		icons[10] = new ImageIcon(ImageIO.read(new File("flag.png")).
 				getScaledInstance(SIZE_OF_GRID - 1, SIZE_OF_GRID - 1, java.awt.Image.SCALE_SMOOTH));
+		
+		// Add buttons:
 		for (int i = 0; i < NUM_OF_ROWS; i++) {
 			for (int j = 0; j < NUM_OF_COLS; j++) {
 				buttons[i][j] = new JButton();
@@ -69,22 +74,19 @@ public class MineSweeperFrame {
 	    	}
 
 	    	public void actionPerformed(ActionEvent event) {
-	    		JButton b = (JButton) event.getSource();
-			int row = b.getY() / SIZE_OF_GRID;
-			int col = b.getX() / SIZE_OF_GRID;
 			click(row, col);
 	    	}
 	    
 		private void click(int row, int col) {
-			if (!started) {
+			if (!started) {  // get the start time
 				started = true;
 				time1 = System.currentTimeMillis();
 			}
 			
-			if (!game.states[row][col]) {
+			if (!game.states[row][col]) {  // this grid hasn't been clicked yet
 				game.states[row][col] = true;
 				int info = game.grids[row][col];
-				if (info == -1) {
+				if (info == -1) {  // click a mine
 					JOptionPane.showMessageDialog(null, "GAME OVER!!");
 					System.exit(0);
 				} else {
